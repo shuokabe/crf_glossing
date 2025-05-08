@@ -12,7 +12,7 @@ def morph2features(sentence, i):
     features = {
         'bias': 1.0,
         'morph.lower()': morph.lower(), # the morpheme itself
-        'morph.isupper()': morph.isupper(), 
+        # 'morph.isupper()': morph.isupper(), 
         'morph.istitle()': morph.istitle(), # Is the morpheme in title case?
         'morph.isdigit()': morph.isdigit(), # Is the morpheme only digits?
         'morph.length': len(morph), # the morpheme length
@@ -25,7 +25,14 @@ def morph2features(sentence, i):
         features.update({
             '-1:morph.lower()': prev_morph.lower(), # the previous morpheme
             '-1:morph.length': len(prev_morph), # the length of the previous morpheme
+            '-1:morph.is_boundary': is_boundary(prev_morph), # the previous element is a morpheme boundary?
         })
+        if (i > 1) and (is_boundary(prev_morph)): # if the previous morpheme is a morpheme boundary
+            prev2_morph = sentence[i - 2][0]
+            features.update({
+                '-2:morph.lower()': prev2_morph.lower(), # morpheme itself
+                '-2:morph.length': len(prev2_morph), # length 
+            })
     else:
         features['BOS'] = True # beginning of the sentence
 

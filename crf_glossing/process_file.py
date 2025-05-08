@@ -58,7 +58,7 @@ class IGT_Corpus:
         
 
     def split_uncovered(self, tilde=False, lower=True):
-        '''Convert the Shared task file into three separate files.
+        r'''Convert the Shared task file into three separate files.
 
         4 tiers:
         \t: raw source sentence
@@ -84,21 +84,21 @@ class IGT_Corpus:
 
             # Source sentence
             source = split_sentence[field_dict['m']].strip()
-            utils.check_equality(source[0:3], '\m ')
+            utils.check_equality(source[0:3], r'\m ')
 
             # Gloss sentence
             gloss = split_sentence[field_dict['g']].strip()
             if not self.test:
-                utils.check_equality(gloss[0:3], '\g ')
+                utils.check_equality(gloss[0:3], r'\g ')
             else: # If test dataset, gloss is not available
-                gloss = '\g '
+                gloss = r'\g '
 
             # Translation
             if field_dict['l'] == -1: # If no translation
-                translation = '\l '
+                translation = r'\l '
             else: 
                 translation = split_sentence[field_dict['l']].strip()
-                utils.check_equality(translation[0:3], '\l ')
+                utils.check_equality(translation[0:3], r'\l ')
                 pp_translation = preprocess_translation(translation[3:], tilde=tilde, lower=lower)
 
             # # Add to lists

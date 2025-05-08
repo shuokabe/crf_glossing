@@ -52,7 +52,7 @@ def load_data_file(path: str) -> List[IGTLine]:
     """Loads a file containing IGT data into a list of entries."""
     all_data = []
 
-    with open(path, 'r') as file:
+    with open(path, 'r', encoding='utf-8') as file:
         current_entry = [None, None, None, None]  # transc, segm, gloss, transl
 
         for line in file:

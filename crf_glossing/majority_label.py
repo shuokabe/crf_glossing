@@ -89,7 +89,7 @@ def create_majority_dict(train_corpus, label=None):
 def apply_majority_label(prediction_list, majority_dictionary, corpus):
     '''Replace all predicted stem labels with the majority label.'''
     # n = len(prediction_list)
-    assert len(prediction_list) == corpus.n_sent, f'Number of sentences do not match: {n} and {corpus.n_sent}.'
+    assert len(prediction_list) == corpus.n_sent, f'Number of sentences do not match: {len(prediction_list)} and {corpus.n_sent}.'
     new_prediction = []
     for i in range(corpus.n_sent):
         sent_label_list = []
