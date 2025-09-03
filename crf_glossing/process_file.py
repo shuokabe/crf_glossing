@@ -18,7 +18,7 @@ def preprocess_translation(translation_sentence, tilde=False, lower=True):
     new_sentence = re.sub(" '", ' ', new_sentence)
     # Deal with other special characters
     new_sentence = re.sub(r'[\u200e“”\u200b…<>]', ' ', new_sentence) # New
-    new_sentence = re.sub(' +', ' ', new_sentence)
+    new_sentence = utils.remove_excessive_whitespace(new_sentence)
     return new_sentence.strip()
 
 

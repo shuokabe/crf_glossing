@@ -44,3 +44,14 @@ def check_equality(value_left, value_right):
 def flatten_2D(list_of_list):
     '''Flatten a 2D list (list of list).'''
     return [element for element_list in list_of_list for element in element_list]
+
+# Save text file
+def save_file(text, path):
+    '''Save a text file in the desired path.'''
+    with open(path, 'w', encoding = 'utf8') as out_text:
+        out_text.write(text)
+
+# Preprocessing functions
+def remove_excessive_whitespace(string):
+    '''Remove excessive whitespace.'''
+    return re.sub(' +', ' ', string)
